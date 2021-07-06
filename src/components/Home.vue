@@ -14,7 +14,7 @@
             <v-card-title
               class="pa-0 text-uppercase text-h6 font-weight-bold"
               style="color: hsl(229, 64%, 46%);"
-              >score</v-card-title
+              >scoffre</v-card-title
             >
             <v-card-title
               class="pa-0 text-h1 font-weight-bold"
