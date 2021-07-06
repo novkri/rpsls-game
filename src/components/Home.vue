@@ -29,7 +29,7 @@
             <v-card-title
               class="pa-0 text-h1 font-weight-bold"
               style="color: hsl(0,0%,39%) !important;"
-              >12</v-card-title
+              >{{ score }}</v-card-title
             >
           </v-card>
         </v-col>
@@ -37,7 +37,7 @@
     </v-card>
 
     <!--    TODO: logic-->
-    <game-board></game-board>
+    <game-board @changeScore="changeScore"></game-board>
 
     <v-row>
       <v-col align="end">
@@ -54,11 +54,15 @@ export default {
   name: "Home",
   components: { Modal, GameBoard },
   data: () => ({
-    isRulesOpen: false
+    isRulesOpen: false,
+    score: 0
   }),
   methods: {
     toggleRules() {
       this.isRulesOpen = !this.isRulesOpen;
+    },
+    changeScore(newScore) {
+      this.score += newScore
     }
   }
 };

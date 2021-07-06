@@ -79,15 +79,12 @@ export default {
         this.houseSelectedCap = this.caps.filter(
           cap => cap.id === randomNumber
         )[0];
-        // this.houseSelectedCap = this.caps.filter(
-        //     cap => cap.id === 4
-        // )[0];
 
         console.log(this.houseSelectedCap);
         this.isHousePicked = true;
 
         this.evaluateResults();
-      }, 1500);
+      }, 1000);
     },
 
     evaluateResults() {
@@ -108,6 +105,8 @@ export default {
 
         let result = houseCombination[0] - userCombination[0];
         this.winner = loseCombinations.includes(result) ? "user" : "house";
+        let newScore = this.winner === 'user' ? 1 : -1;
+        this.$emit('changeScore', newScore)
       }
     }
   }
