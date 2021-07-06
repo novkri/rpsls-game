@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <v-container>
     Game Board
-  </div>
+  </v-container>
 </template>
 
 <script>
