@@ -6,8 +6,8 @@
     @click="$emit('selectCap')"
     elevation="1"
     class="rounded-circle pa-8"
-    width="250"
-    height="250"
+    width="270"
+    height="270"
     :color="capColor"
     style="
 -webkit-box-shadow: 0px -11px 0px 0px rgba(12, 12, 12, 0.3) inset !important;

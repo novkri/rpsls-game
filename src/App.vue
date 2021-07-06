@@ -7,26 +7,41 @@
 </template>
 
 <script>
-import Home from './components/Home';
+import Home from "./components/Home";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
-    Home,
+    Home
   },
 
   data: () => ({
     //
-  }),
+  })
 };
 </script>
 
 <style>
 * {
-  font-family: 'Barlow Semi Condensed', sans-serif !important;
+  font-family: "Barlow Semi Condensed", sans-serif !important;
+  letter-spacing: 3px !important;
 }
+
+.v-application .text-h1,
+.v-application .text-h2,
+.v-application .text-h3,
+.v-application .text-h4,
+.v-application .text-h5,
+.v-application .text-h6 {
+  letter-spacing: 3px !important;
+}
+
 .v-application--wrap {
-  background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%) 100%);
+  background: linear-gradient(
+    to bottom,
+    hsl(214, 47%, 23%),
+    hsl(237, 49%, 15%) 100%
+  );
 }
 </style>

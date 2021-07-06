@@ -18,13 +18,11 @@
 <script>
 import Start from "@/components/gameSteps/Start";
 import Picked from "@/components/gameSteps/Picked";
-import Finish from "@/components/gameSteps/Finish";
 export default {
   name: "GameBoard",
   components: {
     Start,
-    Picked,
-    Finish
+    Picked
   },
   data: () => ({
     caps: [
@@ -68,7 +66,7 @@ export default {
     },
     restart() {
       this.isHousePicked = false;
-      this.state = 'start';
+      this.state = "start";
       this.userSelectedCap = null;
       this.houseSelectedCap = null;
       this.winner = "";
@@ -89,23 +87,27 @@ export default {
         this.isHousePicked = true;
 
         this.evaluateResults();
-      }, 1000);
+      }, 1500);
     },
 
     evaluateResults() {
-      let loseCombinations = [-1, 2, 4, -3]
+      let loseCombinations = [-1, 2, 4, -3];
       // let winCombinations = [1, -2, 3, -4]
 
       if (this.userSelectedCap.id === this.houseSelectedCap.id) {
         this.winner = "nobody";
       } else {
         // evaluates the difference between User's picked cap AND any other cap.id
-        let userCombination = this.caps.map(cap => cap.id).map(id => id - this.userSelectedCap.id)
+        let userCombination = this.caps
+          .map(cap => cap.id)
+          .map(id => id - this.userSelectedCap.id);
         // evaluates the difference between House's picked cap AND any other cap.id
-        let houseCombination = this.caps.map(cap => cap.id).map(id => id - this.houseSelectedCap.id)
+        let houseCombination = this.caps
+          .map(cap => cap.id)
+          .map(id => id - this.houseSelectedCap.id);
 
-        let result = houseCombination[0] - userCombination[0]
-        this.winner = loseCombinations.includes(result) ? 'user' : 'house'
+        let result = houseCombination[0] - userCombination[0];
+        this.winner = loseCombinations.includes(result) ? "user" : "house";
       }
     }
   }

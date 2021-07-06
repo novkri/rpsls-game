@@ -3,21 +3,27 @@
     <v-card class="info-card rounded-xl pa-6">
       <v-row>
         <v-col>
-          <p class="white--text text-h3 text-uppercase font-weight-bold">
+          <p
+            class="white--text text-h4 text-uppercase font-weight-bold"
+            style="letter-spacing: 0px !important;"
+          >
             rock <br />
             paper <br />
-            scissors
+            scissors <br />
+            lizard <br />
+            spock
           </p>
         </v-col>
         <v-spacer></v-spacer>
         <v-col>
           <v-card
             width="270"
-            class="fill-height rounded-lg pa-4 d-flex flex-column justify-center align-center ml-auto"
+            class="fill-height rounded-lg pa-4 d-flex flex-column justify-space-around align-center ml-auto"
           >
+            <!-- TODO score counter-->
             <v-card-title
               class="pa-0 text-uppercase text-h6 font-weight-bold"
-              style="letter-spacing: 3px !important; color: hsl(229, 64%, 46%);"
+              style="color: hsl(229, 64%, 46%);"
               >score</v-card-title
             >
             <v-card-title
