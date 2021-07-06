@@ -2,7 +2,7 @@
     <!-- TODO: стили кривые -->
     <v-dialog
         v-model="dialog"
-        width="450"
+        width="850"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -31,7 +31,7 @@
           </v-btn>
         </v-toolbar>
 
-        <v-img class="ma-auto" width="450" src="@/assets/images/image-rules-bonus.svg" />
+        <v-img class="ma-auto" width="650" src="@/assets/images/image-rules-bonus.svg" />
       </v-card>
     </v-dialog>
 </template>

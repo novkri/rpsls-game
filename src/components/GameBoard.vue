@@ -30,18 +30,28 @@ export default {
     caps: [
       {
         id: 0,
+        name: "scissors",
+        color: "yellow"
+      },
+      {
+        id: 1,
         name: "paper",
         color: "blue"
       },
       {
-        id: 1,
+        id: 2,
         name: "rock",
         color: "red"
       },
       {
-        id: 2,
-        name: "scissors",
-        color: "yellow"
+        id: 3,
+        name: "lizard",
+        color: "purple"
+      },
+      {
+        id: 4,
+        name: "spock",
+        color: "light-blue"
       }
     ],
     state: "start",
@@ -71,6 +81,9 @@ export default {
         this.houseSelectedCap = this.caps.filter(
           cap => cap.id === randomNumber
         )[0];
+        // this.houseSelectedCap = this.caps.filter(
+        //     cap => cap.id === 4
+        // )[0];
 
         console.log(this.houseSelectedCap);
         this.isHousePicked = true;
@@ -80,24 +93,19 @@ export default {
     },
 
     evaluateResults() {
-      console.log("evaluateResults");
+      let loseCombinations = [-1, 2, 4, -3]
+      // let winCombinations = [1, -2, 3, -4]
+
       if (this.userSelectedCap.id === this.houseSelectedCap.id) {
-        console.log("Ничья");
         this.winner = "nobody";
       } else {
-        if (this.userSelectedCap.id === 0 && this.houseSelectedCap.id === 2) {
-          console.log("Lose");
-          this.winner = "house";
-        } else if (
-          this.userSelectedCap.id < this.houseSelectedCap.id ||
-          (this.userSelectedCap.id === 2 && this.houseSelectedCap.id === 0)
-        ) {
-          console.log("Win");
-          this.winner = "user";
-        } else {
-          console.log("Lose");
-          this.winner = "house";
-        }
+        // evaluates the difference between User's picked cap AND any other cap.id
+        let userCombination = this.caps.map(cap => cap.id).map(id => id - this.userSelectedCap.id)
+        // evaluates the difference between House's picked cap AND any other cap.id
+        let houseCombination = this.caps.map(cap => cap.id).map(id => id - this.houseSelectedCap.id)
+
+        let result = houseCombination[0] - userCombination[0]
+        this.winner = loseCombinations.includes(result) ? 'user' : 'house'
       }
     }
   }
