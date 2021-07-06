@@ -10,6 +10,7 @@
           You picked
         </p>
         <Cap
+            :class="[(!!winner && winner === 'user') ? 'pulse' : '']"
           :capColor="userSelectedCap.color"
           :iconName="`icon-${userSelectedCap.name}.svg`"
         ></Cap>
@@ -56,6 +57,7 @@
         ></v-card>
         <Cap
           v-else
+          :class="[(!!winner && winner === 'house') ? 'pulse' : '']"
           :capColor="houseSelectedCap.color"
           :iconName="`icon-${houseSelectedCap.name}.svg`"
         ></Cap>
