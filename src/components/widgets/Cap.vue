@@ -6,9 +6,9 @@
       @click="$emit('selectCap')"
       elevation="1"
       class="rounded-circle pa-8"
-      :class="[isClickable ? 'pointer' : '']"
-      width="270"
-      height="270"
+      :class="[isClickable ? 'pointer' : 'default']"
+      :width="270"
+      :height="270"
       :color="capColor"
       style="
 -webkit-box-shadow: 0px -11px 0px 0px rgba(12, 12, 12, 0.3) inset !important;
@@ -41,12 +41,24 @@ export default {
   name: "Cap",
   props: {
     capColor: String,
-    iconName: String
+    iconName: String,
+    isClickable: Boolean
   }
 };
 </script>
 
 <style>
+.v-card--link:focus:before {
+  border-radius: 50% !important;
+}
+
+.poiner {
+  cursor: pointer !important;
+}
+.default {
+  cursor: default !important;
+}
+
 .pulse {
   animation: pulsee 4s infinite;
 }
@@ -75,12 +87,10 @@ export default {
     -webkit-box-shadow: 0px 0px 1px 100px rgba(169, 169, 169, 0.15);
     -moz-box-shadow: 0px 0px 1px 100px rgba(169, 169, 169, 0.15);
     box-shadow: 0px 0px 1px 100px rgba(169, 169, 169, 0.15);
-
   }
   100% {
     -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
     box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
   }
 }
-
 </style>

@@ -10,9 +10,10 @@
           You picked
         </p>
         <Cap
-            :class="[(!!winner && winner === 'user') ? 'pulse' : '']"
+          :class="[!!winner && winner === 'user' ? 'pulse' : '']"
           :capColor="userSelectedCap.color"
           :iconName="`icon-${userSelectedCap.name}.svg`"
+          :isClickable="false"
         ></Cap>
       </v-col>
 
@@ -57,9 +58,10 @@
         ></v-card>
         <Cap
           v-else
-          :class="[(!!winner && winner === 'house') ? 'pulse' : '']"
+          :class="[!!winner && winner === 'house' ? 'pulse' : '']"
           :capColor="houseSelectedCap.color"
           :iconName="`icon-${houseSelectedCap.name}.svg`"
+          :isClickable="false"
         ></Cap>
       </v-col>
     </v-row>

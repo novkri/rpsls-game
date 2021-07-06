@@ -16,6 +16,7 @@
           @selectCap="selectCap(cap)"
           :capColor="cap.color"
           :iconName="`icon-${cap.name}.svg`"
+          :isClickable="true"
         ></Cap>
       </v-col>
     </v-row>
@@ -31,6 +32,7 @@
             @selectCap="selectCap(cap)"
             :capColor="cap.color"
             :iconName="`icon-${cap.name}.svg`"
+            :isClickable="true"
         ></Cap>
       </v-col>
     </v-row>
