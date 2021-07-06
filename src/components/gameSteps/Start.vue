@@ -1,10 +1,9 @@
 <template>
-  <!--  TODO: bg !! -->
-  <v-container
-    fluid
-    class="game-container my-16"
-  >
-    <v-row class="mb-10 flex-row flex-nowrap justify-center align-end" style="height: 500px;">
+  <v-container fluid class="game-container my-16">
+    <v-row
+      class="mb-10 flex-row flex-nowrap justify-center align-end"
+      style="height: 500px;"
+    >
       <v-col
         class="d-flex justify-center"
         :class="[index === 1 ? 'align-self-start' : '']"
@@ -23,16 +22,16 @@
 
     <v-row class="justify-center">
       <v-col
-          class="d-flex justify-center"
-          cols="4"
-          v-for="cap in caps.slice(3, 5)"
-          :key="cap.name"
+        class="d-flex justify-center"
+        cols="4"
+        v-for="cap in caps.slice(3, 5)"
+        :key="cap.name"
       >
         <Cap
-            @selectCap="selectCap(cap)"
-            :capColor="cap.color"
-            :iconName="`icon-${cap.name}.svg`"
-            :isClickable="true"
+          @selectCap="selectCap(cap)"
+          :capColor="cap.color"
+          :iconName="`icon-${cap.name}.svg`"
+          :isClickable="true"
         ></Cap>
       </v-col>
     </v-row>

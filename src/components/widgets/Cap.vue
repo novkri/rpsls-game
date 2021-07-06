@@ -1,6 +1,5 @@
 <template>
-  <!--  TODO: styles on Hover-->
-  <!--  TODO: forbid if not clickable-->
+  <!--  TODO: styles (size) on Hover ?-->
   <div class="rounded-circle">
     <v-card
       @click="$emit('selectCap')"

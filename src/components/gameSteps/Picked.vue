@@ -1,5 +1,4 @@
 <template>
-  <!--  TODO: show winner-->
   <v-container fluid class="game-container my-16">
     <v-row class="mb-10">
       <v-col
@@ -47,7 +46,7 @@
         <p class="text-uppercase text-h6 font-weight-bold white--text mb-12">
           The house picked
         </p>
-        <!--  TODO: add transition -->
+        <!--  TODO: add transition ?-->
         <v-card
           v-if="!isHousePicked"
           elevation="1"

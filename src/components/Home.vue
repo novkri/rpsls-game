@@ -1,18 +1,9 @@
 <template>
   <v-container>
-    <v-card class="info-card rounded-xl pa-6">
+    <v-card class="info-card rounded-xl py-7 px-10">
       <v-row>
         <v-col>
-          <p
-            class="white--text text-h4 text-uppercase font-weight-bold"
-            style="letter-spacing: 0px !important;"
-          >
-            rock <br />
-            paper <br />
-            scissors <br />
-            lizard <br />
-            spock
-          </p>
+          <v-img width="160" src="@/assets/images/logo-bonus.svg" />
         </v-col>
         <v-spacer></v-spacer>
         <v-col>
@@ -20,7 +11,6 @@
             width="270"
             class="fill-height rounded-lg pa-4 d-flex flex-column justify-space-around align-center ml-auto"
           >
-            <!-- TODO score counter-->
             <v-card-title
               class="pa-0 text-uppercase text-h6 font-weight-bold"
               style="color: hsl(229, 64%, 46%);"
@@ -36,7 +26,6 @@
       </v-row>
     </v-card>
 
-    <!--    TODO: logic-->
     <game-board @changeScore="changeScore"></game-board>
 
     <v-row>
@@ -62,7 +51,7 @@ export default {
       this.isRulesOpen = !this.isRulesOpen;
     },
     changeScore(newScore) {
-      this.score += newScore
+      this.score += newScore;
     }
   }
 };
