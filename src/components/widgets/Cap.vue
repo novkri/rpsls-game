@@ -1,5 +1,9 @@
 <template>
+  <!--  TODO: styles on Hover-->
+  <!--  TODO: forbid if not clickable-->
+
   <v-card
+    @click="$emit('selectCap')"
     elevation="1"
     class="rounded-circle pa-8"
     width="250"
@@ -40,6 +44,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

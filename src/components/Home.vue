@@ -46,13 +46,13 @@ import GameBoard from "@/components/GameBoard";
 import Modal from "@/components/Modal";
 export default {
   name: "Home",
-  components: {Modal, GameBoard },
+  components: { Modal, GameBoard },
   data: () => ({
-    isRulesOpen: false,
+    isRulesOpen: false
   }),
   methods: {
     toggleRules() {
-      this.isRulesOpen = !this.isRulesOpen
+      this.isRulesOpen = !this.isRulesOpen;
     }
   }
 };
