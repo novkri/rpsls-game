@@ -18,7 +18,7 @@ import Modal from "@/components/Modal";
 import Header from "@/components/Header";
 export default {
   name: "Home",
-  components: {Header, Modal, GameBoard },
+  components: { Header, Modal, GameBoard },
   data: () => ({
     isRulesOpen: false,
     score: 0
@@ -35,7 +35,6 @@ export default {
 </script>
 
 <style>
-
 .rules-btn {
   background-color: transparent !important;
   border: 2px solid #d5d5d5;

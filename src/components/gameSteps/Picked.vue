@@ -6,7 +6,9 @@
         cols="6"
         :md="!!winner ? 4 : 6"
       >
-        <p class="text-uppercase text-body-2 text-md-h5 font-weight-bold white--text mb-md-12 mt-12 mt-md-0">
+        <p
+          class="text-uppercase text-body-2 text-md-h5 font-weight-bold white--text mb-md-12 mt-12 mt-md-0"
+        >
           You picked
         </p>
         <Cap
@@ -44,7 +46,9 @@
         cols="6"
         :md="!!winner ? 4 : 6"
       >
-        <p class="text-uppercase text-body-2 text-md-h5 font-weight-bold white--text mb-md-12 mt-12 mt-md-0">
+        <p
+          class="text-uppercase text-body-2 text-md-h5 font-weight-bold white--text mb-md-12 mt-12 mt-md-0"
+        >
           The house picked
         </p>
         <!--  TODO: add transition ?-->

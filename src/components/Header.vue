@@ -7,17 +7,17 @@
       <v-spacer></v-spacer>
       <v-col>
         <v-card
-            class="fill-height rounded-lg pa-4 d-flex flex-column justify-space-around align-center ml-auto score-card"
+          class="fill-height rounded-lg pa-4 d-flex flex-column justify-space-around align-center ml-auto score-card"
         >
           <v-card-title
-              class="pa-0 text-uppercase text-caption text-md-h6 font-weight-bold"
-              style="color: hsl(229, 64%, 46%);"
-          >score</v-card-title
+            class="pa-0 text-uppercase text-caption text-md-h6 font-weight-bold"
+            style="color: hsl(229, 64%, 46%);"
+            >score</v-card-title
           >
           <v-card-title
-              class="pa-0 text-h5 text-md-h1 font-weight-bold"
-              style="color: hsl(0,0%,39%) !important;"
-          >{{ score }}</v-card-title
+            class="pa-0 text-h5 text-md-h1 font-weight-bold"
+            style="color: hsl(0,0%,39%) !important;"
+            >{{ score }}</v-card-title
           >
         </v-card>
       </v-col>
@@ -29,9 +29,9 @@
 export default {
   name: "Header",
   props: {
-    score: Number,
+    score: Number
   }
-}
+};
 </script>
 
 <style scoped>

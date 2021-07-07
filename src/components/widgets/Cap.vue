@@ -22,7 +22,7 @@ box-shadow: 0px -11px 0px 0px rgba(12, 12, 12, 0.3) inset !important;"
 box-shadow: 0px 11px 0px 0px rgba(112, 112, 112, 0.3) inset !important;"
       >
         <v-img
-            class="cap-image"
+          class="cap-image"
           contain
           :src="require(`@/assets/images/icon-${iconName}.svg`)"
         ></v-img>
