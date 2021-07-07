@@ -47,27 +47,13 @@ export default {
   height: 100px;
 }
 .cap:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
   transform: scale(1.1);
 }
 .cap-image {
   width: 50px;
   height: 50px;
-}
-
-.scissors {
-  background-image: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
-}
-.rock {
-  background-image: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
-}
-.paper {
-  background-image: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
-}
-.lizard {
-  background-image: linear-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%));
-}
-.spock {
-  background-image: linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%));
 }
 
 @media screen and (min-width: 800px) {
@@ -81,10 +67,6 @@ export default {
   }
 }
 
-.v-card--link:focus:before {
-  border-radius: 50% !important;
-}
-
 .poiner {
   cursor: pointer !important;
 }
@@ -92,38 +74,139 @@ export default {
   cursor: default !important;
 }
 
+/* caps colors */
+.scissors {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsl(39, 89%, 49%)),
+    to(hsl(40, 84%, 53%))
+  );
+  background-image: -o-linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+  background-image: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+}
+.rock {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsl(349, 71%, 52%)),
+    to(hsl(349, 70%, 56%))
+  );
+  background-image: -o-linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+  background-image: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+}
+.paper {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsl(230, 89%, 62%)),
+    to(hsl(230, 89%, 65%))
+  );
+  background-image: -o-linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+  background-image: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+}
+.lizard {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsl(261, 73%, 60%)),
+    to(hsl(261, 72%, 63%))
+  );
+  background-image: -o-linear-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%));
+  background-image: linear-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%));
+}
+.spock {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsl(189, 59%, 53%)),
+    to(hsl(189, 58%, 57%))
+  );
+  background-image: -o-linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%));
+  background-image: linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%));
+}
+
+/* remove vuetify's border */
+.v-card--link:focus:before {
+  border-radius: 50% !important;
+}
+
+/* shadow animation */
 .pulse {
-  animation: pulsee 4s infinite;
+  position: relative;
+}
+
+.pulse:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  animation: pulsee 1.5s 0.65s ease-out infinite;
+  -webkit-animation: pulsee 1.5s 0.65s ease-out infinite;
+}
+
+.pulse:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  animation: pulsee 1.5s 0.5s ease-out infinite;
+  -webkit-animation: pulsee 1.5s 0.65s ease-out infinite;
 }
 
 .pulse:hover {
+  -webkit-animation: none;
   animation: none;
 }
 
 @-webkit-keyframes pulsee {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(34, 34, 34, 0.28);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-box-shadow: 0 0 2px rgba(173, 172, 172, 0.15),
+      inset 0 0 1px rgba(243, 241, 241, 0.15);
+    box-shadow: 0 0 2px rgba(173, 172, 172, 0.15),
+      inset 0 0 1px rgba(243, 241, 241, 0.15);
   }
-  70% {
-    -webkit-box-shadow: 0px 0px 1px 100px rgba(169, 169, 169, 0.15);
+  95% {
+    -webkit-box-shadow: 0 0 50px rgba(255, 0, 0, 0),
+      inset 0 0 30px rgba(246, 5, 5, 0);
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0), inset 0 0 30px rgba(246, 5, 5, 0);
   }
   100% {
-    -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    -webkit-transform: scale(2);
+    transform: scale(2);
   }
 }
+
 @keyframes pulsee {
   0% {
-    -moz-box-shadow: 0 0 0 0 rgba(34, 34, 34, 0.28);
-    box-shadow: 0 0 0 0 rgba(34, 34, 34, 0.28);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-box-shadow: 0 0 2px rgba(173, 172, 172, 0.15),
+      inset 0 0 1px rgba(243, 241, 241, 0.15);
+    box-shadow: 0 0 2px rgba(173, 172, 172, 0.15),
+      inset 0 0 1px rgba(243, 241, 241, 0.15);
   }
-  70% {
-    -webkit-box-shadow: 0px 0px 1px 100px rgba(169, 169, 169, 0.15);
-    -moz-box-shadow: 0px 0px 1px 100px rgba(169, 169, 169, 0.15);
-    box-shadow: 0px 0px 1px 100px rgba(169, 169, 169, 0.15);
+  95% {
+    -webkit-box-shadow: 0 0 50px rgba(255, 0, 0, 0),
+      inset 0 0 30px rgba(246, 5, 5, 0);
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0), inset 0 0 30px rgba(246, 5, 5, 0);
   }
   100% {
-    -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
-    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    -webkit-transform: scale(2);
+    transform: scale(2);
   }
 }
 </style>

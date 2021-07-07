@@ -8,8 +8,7 @@
 
 <script>
 import Home from "./components/Home";
-//TODO mobile
-//TODO colors and fonts
+
 export default {
   name: "App",
 
@@ -38,15 +37,28 @@ export default {
   letter-spacing: 3px !important;
 }
 
+.text--dark {
+  color: hsl(229, 25%, 31%) !important;
+}
+
+/* background */
 .v-application--wrap {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsl(214, 47%, 23%)),
+    to(hsl(237, 49%, 15%))
+  );
+  background: -o-linear-gradient(
+    top,
+    hsl(214, 47%, 23%),
+    hsl(237, 49%, 15%) 100%
+  );
   background: linear-gradient(
     to bottom,
     hsl(214, 47%, 23%),
     hsl(237, 49%, 15%) 100%
   );
-}
-
-.text--dark {
-  color: hsl(229, 25%, 31%) !important;
 }
 </style>

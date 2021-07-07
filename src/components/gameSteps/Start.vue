@@ -66,6 +66,7 @@ export default {
 .game-container__top-row {
   height: 220px;
 }
+
 @media screen and (min-width: 800px) {
   .game-container {
     background-size: 55% !important;

@@ -1,8 +1,8 @@
 <template>
-  <v-card class="info-card rounded-xl py-4 py-md-7 px-4 px-md-10">
+  <v-card class="header-card rounded-xl py-4 py-md-7 px-4 px-md-10">
     <v-row>
       <v-col>
-        <v-img class="info-card__logo" src="@/assets/images/logo-bonus.svg" />
+        <v-img class="header-card__logo" src="@/assets/images/logo-bonus.svg" />
       </v-col>
       <v-spacer></v-spacer>
       <v-col>
@@ -35,12 +35,12 @@ export default {
 </script>
 
 <style scoped>
-.info-card {
+.header-card {
   border: 4px solid hsl(217, 16%, 45%) !important;
   background-color: transparent !important;
 }
 
-.info-card__logo {
+.header-card__logo {
   width: 80px;
 }
 
@@ -49,7 +49,7 @@ export default {
 }
 
 @media screen and (min-width: 800px) {
-  .info-card__logo {
+  .header-card__logo {
     width: 160px;
   }
 

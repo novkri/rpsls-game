@@ -18,7 +18,7 @@
         ></Cap>
       </v-col>
 
-      <v-col v-if="!!winner" cols="12" md="4" class="result">
+      <v-col v-if="!!winner" cols="12" md="4" class="game-result">
         <v-card
           elevation="0"
           class="ma-auto d-flex flex-column justify-center align-center"
@@ -104,33 +104,47 @@ export default {
   min-height: 500px;
 }
 
-.result {
+.game-result {
   position: absolute;
   bottom: -90%;
 }
 
 @media screen and (min-width: 800px) {
-  .result {
+  .game-result {
     position: static;
   }
 }
 
 /* transition */
 .popup-enter-active {
-  animation: popup-in .5s;
+  -webkit-animation: popup-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: popup-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .popup-leave-active {
-  animation: popup-in .5s reverse;
+  animation: popup-in 0.5s reverse;
 }
 @keyframes popup-in {
   0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.5);
+    -webkit-transform: rotateX(80deg);
+    transform: rotateX(80deg);
+    opacity: 0;
   }
   100% {
-    transform: scale(1);
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+@keyframes flip-in-hor-bottom {
+  0% {
+    -webkit-transform: rotateX(80deg);
+    transform: rotateX(80deg);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    opacity: 1;
   }
 }
 </style>
