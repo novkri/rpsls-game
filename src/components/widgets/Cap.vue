@@ -10,9 +10,10 @@
 -moz-box-shadow: 0px -11px 0px 0px rgba(12, 12, 12, 0.3) inset !important;
 box-shadow: 0px -11px 0px 0px rgba(12, 12, 12, 0.3) inset !important;"
     >
+<!--      TODO gray bg-->
       <v-card
         elevation="0"
-        class="rounded-circle d-flex justify-center align-center"
+        class="rounded-circle d-flex justify-center align-center grey lighten-2"
         width="100%"
         height="100%"
         style="
@@ -22,7 +23,6 @@ box-shadow: 0px 11px 0px 0px rgba(112, 112, 112, 0.3) inset !important;"
       >
         <v-img
           class="cap-image"
-          contain
           :src="require(`@/assets/images/icon-${iconName}.svg`)"
         ></v-img>
       </v-card>
@@ -53,7 +53,11 @@ export default {
 }
 .cap-image {
   width: 50px;
-  height: 50px;
+  height: 82px;
+}
+
+.v-image__image--cover {
+  background-size: 50% !important;
 }
 
 @media screen and (min-width: 800px) {
@@ -63,7 +67,7 @@ export default {
   }
   .cap-image {
     width: 100px;
-    height: 100px;
+    height: 165px;
   }
 }
 
