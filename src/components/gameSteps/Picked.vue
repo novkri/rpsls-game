@@ -51,21 +51,23 @@
         >
           The house picked
         </p>
-        <!--  TODO: add transition ?-->
-        <v-card
-          v-if="!isHousePicked"
-          elevation="1"
-          class="rounded-circle"
-          width="200"
-          height="200"
-          style="background-color: rgba(0,0,0,0.13) !important;"
-        ></v-card>
-        <Cap
-          v-else
-          :class="[!!winner && winner === 'house' ? 'pulse' : '']"
-          :iconName="houseSelectedCap.name"
-          :isClickable="false"
-        ></Cap>
+
+        <transition name="popup" mode="out-in">
+          <v-card
+            v-if="!isHousePicked"
+            elevation="1"
+            class="rounded-circle"
+            width="200"
+            height="200"
+            style="background-color: rgba(0,0,0,0.13) !important;"
+          ></v-card>
+          <Cap
+            v-else
+            :class="[!!winner && winner === 'house' ? 'pulse' : '']"
+            :iconName="houseSelectedCap.name"
+            :isClickable="false"
+          ></Cap>
+        </transition>
       </v-col>
     </v-row>
   </v-container>
@@ -110,6 +112,25 @@ export default {
 @media screen and (min-width: 800px) {
   .result {
     position: static;
+  }
+}
+
+/* transition */
+.popup-enter-active {
+  animation: popup-in .5s;
+}
+.popup-leave-active {
+  animation: popup-in .5s reverse;
+}
+@keyframes popup-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 </style>

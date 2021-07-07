@@ -1,5 +1,4 @@
 <template>
-  <!--  TODO: styles (size) on Hover ?-->
   <div class="rounded-circle">
     <v-card
       @click="$emit('selectCap')"
@@ -46,6 +45,9 @@ export default {
 .cap {
   width: 100px;
   height: 100px;
+}
+.cap:hover {
+  transform: scale(1.1);
 }
 .cap-image {
   width: 50px;

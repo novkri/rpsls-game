@@ -1,5 +1,4 @@
 <template>
-  <!--  TODO: container constant height and width ?-->
   <div>
     <component
       :is="state"
@@ -85,7 +84,7 @@ export default {
         this.isHousePicked = true;
 
         this.evaluateResults();
-      }, 10);
+      }, 3000);
     },
 
     evaluateResults() {
@@ -95,25 +94,27 @@ export default {
       if (this.userSelectedCap.id === this.houseSelectedCap.id) {
         this.winner = "nobody";
       } else {
-        this.userSelectedCap.wins.includes(this.houseSelectedCap.id) ? this.winner = 'user' : this.winner = 'house'
+        this.userSelectedCap.wins.includes(this.houseSelectedCap.id)
+          ? (this.winner = "user")
+          : (this.winner = "house");
       }
 
-        ///// old logic:
-        // // evaluates the difference between User's picked cap AND any other cap.id
-        // let userCombination = this.caps
-        //   .map(cap => cap.id)
-        //   .map(id => id - this.userSelectedCap.id);
-        // // evaluates the difference between House's picked cap AND any other cap.id
-        // let houseCombination = this.caps
-        //   .map(cap => cap.id)
-        //   .map(id => id - this.houseSelectedCap.id);
-        //
-        // let result = houseCombination[0] - userCombination[0];
-        // this.winner = loseCombinations.includes(result) ? "user" : "house";
+      ///// old logic:
+      // // evaluates the difference between User's picked cap AND any other cap.id
+      // let userCombination = this.caps
+      //   .map(cap => cap.id)
+      //   .map(id => id - this.userSelectedCap.id);
+      // // evaluates the difference between House's picked cap AND any other cap.id
+      // let houseCombination = this.caps
+      //   .map(cap => cap.id)
+      //   .map(id => id - this.houseSelectedCap.id);
+      //
+      // let result = houseCombination[0] - userCombination[0];
+      // this.winner = loseCombinations.includes(result) ? "user" : "house";
 
-        let newScore = this.winner === "user" ? 1 : -1;
-        this.$emit("changeScore", newScore);
-      }
+      let newScore = this.winner === "user" ? 1 : -1;
+      this.$emit("changeScore", newScore);
+      // }
     }
   }
 };
