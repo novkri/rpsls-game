@@ -10,7 +10,7 @@
 -moz-box-shadow: 0px -11px 0px 0px rgba(12, 12, 12, 0.3) inset !important;
 box-shadow: 0px -11px 0px 0px rgba(12, 12, 12, 0.3) inset !important;"
     >
-<!--      TODO gray bg-->
+
       <v-card
         elevation="0"
         class="rounded-circle d-flex justify-center align-center grey lighten-2"
@@ -56,7 +56,7 @@ export default {
   height: 82px;
 }
 
-.v-image__image--cover {
+.cap-image .v-image__image--cover {
   background-size: 50% !important;
 }
 
