@@ -24,32 +24,28 @@ export default {
     Start,
     Picked
   },
+  //TODO add who beats who logic
   data: () => ({
     caps: [
       {
         id: 0,
-        name: "scissors",
-        color: "yellow"
+        name: "scissors"
       },
       {
         id: 1,
-        name: "paper",
-        color: "blue"
+        name: "paper"
       },
       {
         id: 2,
-        name: "rock",
-        color: "red"
+        name: "rock"
       },
       {
         id: 3,
-        name: "lizard",
-        color: "purple"
+        name: "lizard"
       },
       {
         id: 4,
-        name: "spock",
-        color: "light-blue"
+        name: "spock"
       }
     ],
     state: "start",

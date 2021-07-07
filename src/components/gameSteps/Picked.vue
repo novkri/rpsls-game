@@ -6,13 +6,12 @@
         cols="6"
         :md="!!winner ? 4 : 6"
       >
-        <p class="text-uppercase text-body-2 text-md-h6 font-weight-bold white--text mb-md-12 mt-12 mt-md-0">
+        <p class="text-uppercase text-body-2 text-md-h5 font-weight-bold white--text mb-md-12 mt-12 mt-md-0">
           You picked
         </p>
         <Cap
           :class="[!!winner && winner === 'user' ? 'pulse' : '']"
-          :capColor="userSelectedCap.color"
-          :iconName="`icon-${userSelectedCap.name}.svg`"
+          :iconName="userSelectedCap.name"
           :isClickable="false"
         ></Cap>
       </v-col>
@@ -45,7 +44,7 @@
         cols="6"
         :md="!!winner ? 4 : 6"
       >
-        <p class="text-uppercase text-body-2 text-md-h6 font-weight-bold white--text mb-md-12 mt-12 mt-md-0">
+        <p class="text-uppercase text-body-2 text-md-h5 font-weight-bold white--text mb-md-12 mt-12 mt-md-0">
           The house picked
         </p>
         <!--  TODO: add transition ?-->
@@ -60,8 +59,7 @@
         <Cap
           v-else
           :class="[!!winner && winner === 'house' ? 'pulse' : '']"
-          :capColor="houseSelectedCap.color"
-          :iconName="`icon-${houseSelectedCap.name}.svg`"
+          :iconName="houseSelectedCap.name"
           :isClickable="false"
         ></Cap>
       </v-col>
