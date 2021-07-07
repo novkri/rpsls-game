@@ -8,7 +8,8 @@
 
 <script>
 import Home from "./components/Home";
-
+//TODO mobile
+//TODO colors and fonts
 export default {
   name: "App",
 
@@ -43,5 +44,9 @@ export default {
     hsl(214, 47%, 23%),
     hsl(237, 49%, 15%) 100%
   );
+}
+
+.text--dark {
+  color: hsl(229, 25%, 31%) !important;
 }
 </style>

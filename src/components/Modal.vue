@@ -2,11 +2,11 @@
     <!-- TODO: стили кривые -->
     <v-dialog
         v-model="dialog"
-        width="750"
+        width="700"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-            class="rules-btn px-10 rounded-lg text&#45;&#45;white text-h6 font-weight-medium"
+            class="rules-btn px-10 rounded-lg text-h5 font-weight-medium"
             large
             dark
             v-bind="attrs"
@@ -19,19 +19,19 @@
       <v-card class="pa-7 pt-2">
         <v-toolbar
             elevation="0"
-            class="mb-6"
+            class="mb-3"
         >
-          <v-toolbar-title class="text-h5">Rules</v-toolbar-title>
+          <v-toolbar-title class="text-h4 text-uppercase font-weight-bold text--dark">Rules</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn
               icon
               @click="dialog = false"
           >
-            <v-icon>mdi-close</v-icon>
+            <v-icon large>mdi-close</v-icon>
           </v-btn>
         </v-toolbar>
 
-        <v-img class="ma-auto" width="550" src="@/assets/images/image-rules-bonus.svg" />
+        <v-img class="ma-auto" width="500" src="@/assets/images/image-rules-bonus.svg" />
       </v-card>
     </v-dialog>
 </template>

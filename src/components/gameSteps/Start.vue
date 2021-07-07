@@ -1,13 +1,12 @@
 <template>
-  <v-container fluid class="game-container my-16">
+  <v-container fluid class="game-container my-16 px-7 px-md-16">
     <v-row
-      class="mb-10 flex-row flex-nowrap justify-center align-end"
-      style="height: 500px;"
+      class="mb-md-16 flex-row flex-nowrap justify-center align-end px-md-16 game-container__top-row"
     >
       <v-col
         class="d-flex justify-center"
         :class="[index === 1 ? 'align-self-start' : '']"
-        cols="3"
+        cols="4"
         v-for="(cap, index) in caps.slice(0, 3)"
         :key="cap.name"
       >
@@ -20,10 +19,10 @@
       </v-col>
     </v-row>
 
-    <v-row class="justify-center">
+    <v-row class="justify-center px-md-16">
       <v-col
         class="d-flex justify-center"
-        cols="4"
+        cols="5"
         v-for="cap in caps.slice(3, 5)"
         :key="cap.name"
       >
@@ -63,7 +62,19 @@ export default {
 .game-container {
   background-image: url("~@/assets/images/bg-pentagon.svg") !important;
   background-position: center center !important;
-  /*background-size: contain !important;*/
-  background-size: 55% !important;
+  background-size: 70% !important;
+}
+
+.game-container__top-row {
+  height: 220px;
+}
+@media screen and (min-width: 800px) {
+  .game-container {
+    background-size: 55% !important;
+  }
+
+  .game-container__top-row {
+    height: 520px;
+  }
 }
 </style>

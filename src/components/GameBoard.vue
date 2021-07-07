@@ -74,8 +74,7 @@ export default {
 
     houseRandomSelect() {
       setTimeout(() => {
-        // TODO: check mathRandom function
-        let randomNumber = Math.floor(Math.random() * (this.caps.length - 0));
+        let randomNumber = Math.floor(Math.random() * (this.caps.length - 0) + 0);
         this.houseSelectedCap = this.caps.filter(
           cap => cap.id === randomNumber
         )[0];

@@ -4,10 +4,8 @@
     <v-card
       @click="$emit('selectCap')"
       elevation="1"
-      class="rounded-circle pa-8"
+      class="rounded-circle pa-3 pa-md-8 cap"
       :class="[isClickable ? 'pointer' : 'default']"
-      :width="270"
-      :height="270"
       :color="capColor"
       style="
 -webkit-box-shadow: 0px -11px 0px 0px rgba(12, 12, 12, 0.3) inset !important;
@@ -25,9 +23,8 @@ box-shadow: 0px -11px 0px 0px rgba(12, 12, 12, 0.3) inset !important;"
 box-shadow: 0px 11px 0px 0px rgba(112, 112, 112, 0.3) inset !important;"
       >
         <v-img
+            class="cap-image"
           contain
-          width="100"
-          height="100"
           :src="require(`@/assets/images/${iconName}`)"
         ></v-img>
       </v-card>
@@ -47,6 +44,26 @@ export default {
 </script>
 
 <style>
+.cap {
+  width: 100px;
+  height: 100px;
+}
+.cap-image {
+  width: 50px;
+  height: 50px;
+}
+
+@media screen and (min-width: 800px) {
+  .cap {
+    width: 250px;
+    height: 250px;
+  }
+  .cap-image {
+    width: 100px;
+    height: 100px;
+  }
+}
+
 .v-card--link:focus:before {
   border-radius: 50% !important;
 }
