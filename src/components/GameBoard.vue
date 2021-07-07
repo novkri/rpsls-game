@@ -84,7 +84,7 @@ export default {
         this.isHousePicked = true;
 
         this.evaluateResults();
-      }, 1000);
+      }, 10);
     },
 
     evaluateResults() {
