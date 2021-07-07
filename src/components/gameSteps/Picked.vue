@@ -1,11 +1,12 @@
 <template>
   <v-container fluid class="game-container my-16">
-    <v-row class="mb-10">
+    <v-row class="mb-10" style="position: relative;">
       <v-col
-        class="d-flex justify-center align-center flex-column"
-        :cols="!!winner ? 4 : 6"
+        class="d-flex justify-center align-center flex-column-reverse flex-md-column"
+        cols="6"
+        :md="!!winner ? 4 : 6"
       >
-        <p class="text-uppercase text-h6 font-weight-bold white--text mb-12">
+        <p class="text-uppercase text-body-2 text-md-h6 font-weight-bold white--text mb-md-12 mt-12 mt-md-0">
           You picked
         </p>
         <Cap
@@ -16,7 +17,7 @@
         ></Cap>
       </v-col>
 
-      <v-col v-if="!!winner" cols="4">
+      <v-col v-if="!!winner" cols="12" md="4" class="result">
         <v-card
           elevation="0"
           class="ma-auto d-flex flex-column justify-center align-center"
@@ -24,7 +25,7 @@
           width="400"
         >
           <v-card-title
-            class="text-h2 text-uppercase white--text font-weight-bold"
+            class="text-h3 text-md-h2 text-uppercase white--text font-weight-bold"
             >{{ finalText }}</v-card-title
           >
           <v-spacer></v-spacer>
@@ -40,10 +41,11 @@
       </v-col>
 
       <v-col
-        class="d-flex justify-center align-center flex-column"
-        :cols="!!winner ? 4 : 6"
+        class="d-flex justify-center align-center flex-column-reverse flex-md-column"
+        cols="6"
+        :md="!!winner ? 4 : 6"
       >
-        <p class="text-uppercase text-h6 font-weight-bold white--text mb-12">
+        <p class="text-uppercase text-body-2 text-md-h6 font-weight-bold white--text mb-md-12 mt-12 mt-md-0">
           The house picked
         </p>
         <!--  TODO: add transition ?-->
@@ -93,4 +95,19 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.game-container {
+  min-height: 500px;
+}
+
+.result {
+  position: absolute;
+  bottom: -90%;
+}
+
+@media screen and (min-width: 800px) {
+  .result {
+    position: static;
+  }
+}
+</style>
