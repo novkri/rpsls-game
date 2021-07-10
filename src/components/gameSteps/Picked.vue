@@ -54,7 +54,7 @@
 
         <transition name="popup" mode="out-in">
           <v-card
-            v-if="!isHousePicked"
+            v-if="!anotherCap"
             elevation="1"
             class="rounded-circle"
             width="200"
@@ -64,7 +64,7 @@
           <Cap
             v-else
             :class="[!!winner && winner === 'house' ? 'pulse' : '']"
-            :iconName="houseSelectedCap.name"
+            :iconName="anotherCap.name"
             :isClickable="false"
           ></Cap>
         </transition>
