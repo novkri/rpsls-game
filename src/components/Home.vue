@@ -2,9 +2,9 @@
   <v-container class="py-15" style="max-width: 1200px;">
     <Header :score="score"></Header>
 
-    <WhoToPlayWith @selectOpponent="selectOpponent" />
+    <WhoToPlayWith @selectOpponent="selectOpponent" v-if="!opponent" />
 
-    <game-board v-if="opponent" @changeScore="changeScore"></game-board>
+    <game-board v-else @changeScore="changeScore"></game-board>
 
     <v-row>
       <v-col class="d-flex justify-center justify-md-end align-center">
@@ -43,8 +43,6 @@ export default {
     selectOpponent(data) {
       this.score = 0
       this.setOpponent(data)
-
-    //  TODO if select opponent on different steps = problems
     }
   }
 };
