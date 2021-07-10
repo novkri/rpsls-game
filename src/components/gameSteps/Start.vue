@@ -48,9 +48,12 @@ export default {
   }),
   methods: {
     selectCap(cap) {
-      console.log(cap);
+      // console.log(cap);
       this.$emit("changeState", { state: "picked", item: cap });
-      this.$emit("houseRandomSelect");
+
+      // if playing with the House
+      // this.$emit("houseRandomSelect");
+
     }
   }
 };
