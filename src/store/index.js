@@ -18,6 +18,10 @@ export default new Vuex.Store({
       state.gameState++;
 
       state.capsPicked.push(payload);
+    },
+    restartGame(state) {
+      state.gameState = 0;
+      state.capsPicked = [];
     }
   },
   actions: {
@@ -54,6 +58,9 @@ export default new Vuex.Store({
       //   .goAway(1200);
       console.log("VUEX", state, server);
       commit("capPicked", state);
+    },
+    restartGame({ commit }) {
+      commit("restartGame");
     }
   }
 });

@@ -12,6 +12,7 @@
           You picked
         </p>
         <Cap
+            class="popup-enter-active"
           :class="[!!winner && winner === 'user' ? 'pulse' : '']"
           :iconName="userSelectedCap.name"
           :isClickable="false"
@@ -46,10 +47,15 @@
         cols="6"
         :md="!!winner ? 4 : 6"
       >
+<!--        <p-->
+<!--          class="text-uppercase text-body-2 text-md-h5 font-weight-bold white&#45;&#45;text mb-md-12 mt-12 mt-md-0"-->
+<!--        >-->
+<!--          The house picked-->
+<!--        </p>-->
         <p
-          class="text-uppercase text-body-2 text-md-h5 font-weight-bold white--text mb-md-12 mt-12 mt-md-0"
+            class="text-uppercase text-body-2 text-md-h5 font-weight-bold white--text mb-md-12 mt-12 mt-md-0"
         >
-          The house picked
+          Another user picked
         </p>
 
         <transition name="popup" mode="out-in">
@@ -63,6 +69,7 @@
           ></v-card>
           <Cap
             v-else
+            class="popup-enter-active"
             :class="[!!winner && winner === 'house' ? 'pulse' : '']"
             :iconName="anotherCap.name"
             :isClickable="false"
@@ -81,7 +88,8 @@ export default {
     userSelectedCap: Object,
     isHousePicked: Boolean,
     houseSelectedCap: Object,
-    winner: String
+    winner: String,
+    anotherCap: Object,
   },
   computed: {
     finalText() {

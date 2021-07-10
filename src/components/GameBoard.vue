@@ -10,6 +10,7 @@
       :userSelectedCap="userSelectedCap"
       :houseSelectedCap="houseSelectedCap"
       :isHousePicked="isHousePicked"
+      :anotherCap="anotherCap"
       :winner="winner"
     ></component>
   </div>
@@ -19,7 +20,7 @@
 import Start from "@/components/gameSteps/Start";
 import Picked from "@/components/gameSteps/Picked";
 import io from 'socket.io-client';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: "GameBoard",
@@ -32,7 +33,12 @@ export default {
     ...mapGetters(['gameState', 'capsPicked']),
 
     anotherCap() {
-      return this.capsPicked.filter(cap => cap.id !== this.userSelectedCap.id)[0]
+      if (this.userSelectedCap) {
+        return this.capsPicked.filter(cap => cap.id !== this.userSelectedCap.id)[0]
+      } else {
+        return null
+      }
+
     },
   },
   watch: {
@@ -96,13 +102,13 @@ export default {
     },
 
   methods: {
+    ...mapActions(['restartGame']),
+
     changeState({ state, item }) {
-      console.log(state, item);
       this.state = state;
       this.userSelectedCap = item;
       this.$socket.emit('customEmit', item)
 
-      // this.checkPicks()
     },
     restart() {
       this.isHousePicked = false;
@@ -110,6 +116,7 @@ export default {
       this.userSelectedCap = null;
       this.houseSelectedCap = null;
       this.winner = "";
+      this.restartGame()
     },
 
     houseRandomSelect() {
