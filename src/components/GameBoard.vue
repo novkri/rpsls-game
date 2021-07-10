@@ -1,4 +1,5 @@
 <template>
+  <!--  TODO: container constant height and width ?-->
   <div>
     <component
       :is="state"
@@ -17,6 +18,9 @@
 <script>
 import Start from "@/components/gameSteps/Start";
 import Picked from "@/components/gameSteps/Picked";
+import io from 'socket.io-client';
+import { mapGetters } from 'vuex';
+
 export default {
   name: "GameBoard",
   components: {
@@ -24,6 +28,21 @@ export default {
     Picked
   },
 
+  computed: {
+    ...mapGetters(['gameState', 'capsPicked']),
+
+    anotherCap() {
+      return this.capsPicked.filter(cap => cap.id !== this.userSelectedCap.id)[0]
+    },
+  },
+  watch: {
+    gameState(newV, oldV) {
+      console.log(newV, oldV)
+      if (newV == 2) {
+        this.evaluateResults()
+      }
+    }
+  },
   data: () => ({
     caps: [
       {
@@ -56,13 +75,34 @@ export default {
     userSelectedCap: null,
     houseSelectedCap: null,
     isHousePicked: false,
-    winner: ""
+    winner: "",
+    socket: {}
   }),
+  created()  {
+    this.socket = io("http://localhost:3000")
+  },
+  mounted() {
+    this.socket.on('success', data => {
+      console.log(data)
+    })
+  },
+   sockets: {
+     connect() {
+         console.log('socket connected')
+       },
+    customEmit(data) {
+      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)', data)
+    }
+    },
+
   methods: {
     changeState({ state, item }) {
       console.log(state, item);
       this.state = state;
       this.userSelectedCap = item;
+      this.$socket.emit('customEmit', item)
+
+      // this.checkPicks()
     },
     restart() {
       this.isHousePicked = false;
@@ -75,12 +115,13 @@ export default {
     houseRandomSelect() {
       setTimeout(() => {
         let randomNumber = Math.floor(
-          Math.random() * (this.caps.length - 0) + 0
+          Math.random() * (this.caps.length)
         );
         this.houseSelectedCap = this.caps.filter(
           cap => cap.id === randomNumber
         )[0];
 
+        // console.log(this.houseSelectedCap);
         this.isHousePicked = true;
 
         this.evaluateResults();
@@ -91,10 +132,10 @@ export default {
       // let loseCombinations = [-1, 2, 4, -3];
       // // let winCombinations = [1, -2, 3, -4]
 
-      if (this.userSelectedCap.id === this.houseSelectedCap.id) {
+      if (this.userSelectedCap.id === this.anotherCap.id) {
         this.winner = "nobody";
       } else {
-        this.userSelectedCap.wins.includes(this.houseSelectedCap.id)
+        this.userSelectedCap.wins.includes(this.anotherCap.id)
           ? (this.winner = "user")
           : (this.winner = "house");
       }
