@@ -37,22 +37,25 @@
 
 <script>
 import Cap from "@/components/widgets/Cap";
+
 export default {
   name: "Start",
   components: { Cap },
   props: {
-    caps: Array
+    caps: Array,
+    opponent: String
   },
   data: () => ({
     state: "start"
   }),
+
   methods: {
     selectCap(cap) {
-      // console.log(cap);
       this.$emit("changeState", { state: "picked", item: cap });
 
-      // if playing with the House
-      // this.$emit("houseRandomSelect");
+      if (this.opponent == 'house') {
+        this.$emit("houseRandomSelect");
+      }
 
     }
   }

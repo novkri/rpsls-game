@@ -1,5 +1,4 @@
 <template>
-  <!--  TODO: container constant height and width ?-->
   <div>
     <component
       :is="state"
@@ -8,11 +7,13 @@
       @restart="restart"
       :caps="caps"
       :userSelectedCap="userSelectedCap"
-      :houseSelectedCap="houseSelectedCap"
+
       :isHousePicked="isHousePicked"
-      :anotherCap="anotherCap"
+      :opponent="opponent"
+      :opponentCapType="opponentCapType"
       :winner="winner"
     ></component>
+<!--  :anotherCap="anotherCap" :houseSelectedCap="houseSelectedCap" -->
   </div>
 </template>
 
@@ -30,20 +31,22 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['gameState', 'capsPicked']),
+    ...mapGetters(['gameState', 'capsPicked', 'opponent']),
 
     anotherCap() {
-      if (this.userSelectedCap) {
+      if (this.userSelectedCap && this.opponent) {
         return this.capsPicked.filter(cap => cap.id !== this.userSelectedCap.id)[0]
       } else {
         return null
       }
-
     },
+
+    opponentCapType() {
+      return this.opponent === 'house' ? this.houseSelectedCap : this.anotherCap
+    }
   },
   watch: {
-    gameState(newV, oldV) {
-      console.log(newV, oldV)
+    gameState(newV) {
       if (newV == 2) {
         this.evaluateResults()
       }
@@ -96,19 +99,18 @@ export default {
      connect() {
          console.log('socket connected')
        },
-    customEmit(data) {
-      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)', data)
-    }
+      customEmit(data) {
+        console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)', data)
+      }
     },
 
   methods: {
-    ...mapActions(['restartGame']),
+    ...mapActions(['restartGame', "setOpponent"]),
 
     changeState({ state, item }) {
       this.state = state;
       this.userSelectedCap = item;
       this.$socket.emit('customEmit', item)
-
     },
     restart() {
       this.isHousePicked = false;
@@ -116,6 +118,7 @@ export default {
       this.userSelectedCap = null;
       this.houseSelectedCap = null;
       this.winner = "";
+      // this.setOpponent('')
       this.restartGame()
     },
 
@@ -136,33 +139,16 @@ export default {
     },
 
     evaluateResults() {
-      // let loseCombinations = [-1, 2, 4, -3];
-      // // let winCombinations = [1, -2, 3, -4]
-
-      if (this.userSelectedCap.id === this.anotherCap.id) {
+      if (this.userSelectedCap.id === this.opponentCapType.id) {
         this.winner = "nobody";
       } else {
-        this.userSelectedCap.wins.includes(this.anotherCap.id)
+        this.userSelectedCap.wins.includes(this.opponentCapType.id)
           ? (this.winner = "user")
           : (this.winner = "house");
       }
 
-      ///// old logic:
-      // // evaluates the difference between User's picked cap AND any other cap.id
-      // let userCombination = this.caps
-      //   .map(cap => cap.id)
-      //   .map(id => id - this.userSelectedCap.id);
-      // // evaluates the difference between House's picked cap AND any other cap.id
-      // let houseCombination = this.caps
-      //   .map(cap => cap.id)
-      //   .map(id => id - this.houseSelectedCap.id);
-      //
-      // let result = houseCombination[0] - userCombination[0];
-      // this.winner = loseCombinations.includes(result) ? "user" : "house";
-
       let newScore = this.winner === "user" ? 1 : -1;
       this.$emit("changeScore", newScore);
-      // }
     }
   }
 };

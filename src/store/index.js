@@ -6,22 +6,25 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     gameState: 0,
-    capsPicked: []
+    capsPicked: [],
+    opponent: ""
   },
   getters: {
     gameState: state => state.gameState,
-    capsPicked: state => state.capsPicked
+    capsPicked: state => state.capsPicked,
+    opponent: state => state.opponent
   },
   mutations: {
     capPicked(state, payload) {
-      console.log(payload, " from mutautoin");
       state.gameState++;
-
       state.capsPicked.push(payload);
     },
     restartGame(state) {
       state.gameState = 0;
       state.capsPicked = [];
+    },
+    setOpponent(state, data) {
+      state.opponent = data;
     }
   },
   actions: {
@@ -61,6 +64,9 @@ export default new Vuex.Store({
     },
     restartGame({ commit }) {
       commit("restartGame");
+    },
+    setOpponent({ commit }, data) {
+      commit("setOpponent", data);
     }
   }
 });
