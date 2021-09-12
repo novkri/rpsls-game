@@ -15,9 +15,12 @@ Socketio.on("connection", socket => {
   console.log(`A user connected with socket id ${socket.id}`);
   socket.emit("success", "Server Accecpting Connections");
 
-  socket.on("customEmit", data => {
-    console.log(data)
+  socket.on("onSelect", data => {
     Socketio.emit("picked", data);
+  });
+
+  socket.on("restart", data => {
+    numUsers = 0
   });
 
   socket.on('newPlayer', () => {

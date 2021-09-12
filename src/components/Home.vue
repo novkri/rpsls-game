@@ -4,7 +4,9 @@
 
     <WhoToPlayWith @selectOpponent="selectOpponent" v-if="!opponent" />
 
-    <div v-else-if="!isStart && opponent === 'human'" class="white--text title">Waiting for another player...</div>
+    <div v-else-if="!isStart && opponent === 'human'" class="white--text title">Waiting for another player...
+      <v-btn @click="startNewGame">Start New Game</v-btn>
+    </div>
 
     <game-board v-else @changeScore="changeScore" :socket="socket"></game-board>
 
@@ -38,6 +40,23 @@ export default {
   }),
 
   mounted() {
+    this.sockets.subscribe("joined", (data) => {
+      console.log("This event was fired by eg. sio.emit('kebab-case')", data)
+    })
+
+    this.sockets.subscribe("startGame", () => {
+      console.log('can start')
+      this.isStart = true
+    })
+
+    this.sockets.subscribe("clientDisconnected", () => {
+      console.log('disconnected')
+      this.isStart = false
+    })
+
+    // this.sockets.subscribe('picked', (item, userId) => {
+    //   console.log('picked: ', item, userId)
+    // })
   },
 
   sockets: {
@@ -48,23 +67,6 @@ export default {
       console.log('success')
       console.log(data)
     },
-    customEmit(data) {
-      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)', data)
-    },
-    disconnect() {
-      console.log('disconnected')
-    },
-    joined(users) {
-      console.log('user joined', users)
-    },
-    startGame() {
-      console.log('can start')
-      this.isStart = true
-    },
-    clientDisconnected() {
-      console.log('disconnected')
-      this.isStart = false
-    }
   },
   methods: {
     ...mapActions(['setOpponent', 'restartGame']),
@@ -79,6 +81,11 @@ export default {
       this.score = 0
       this.setOpponent(data)
       this.$socket.emit('newPlayer')
+    },
+    startNewGame() {
+      this.score = 0
+      this.restartGame()
+      this.$socket.emit('restart')
     }
   }
 };

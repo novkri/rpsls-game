@@ -24,6 +24,8 @@ export default new Vuex.Store({
     restartGame(state) {
       state.gameState = 0;
       state.capsPicked = [];
+      state.opponent = ''
+      state.players = []
     },
     setOpponent(state, data) {
       state.opponent = data;

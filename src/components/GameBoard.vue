@@ -37,7 +37,7 @@ export default {
     ...mapGetters(['gameState', 'capsPicked', 'opponent']),
 
     anotherCap() {
-      if (this.userSelectedCap && this.opponent) {
+      if (this.userSelectedCap && this.opponent && this.capsPicked.length === 2) {
         return this.capsPicked.filter(cap => cap.id !== this.userSelectedCap.id)[0]
       } else {
         return null
@@ -97,7 +97,7 @@ export default {
     changeState({ state, item }) {
       this.state = state;
       this.userSelectedCap = item;
-      this.$socket.emit('customEmit', item)
+      this.$socket.emit('onSelect', item)
     },
     restart() {
       this.isHousePicked = false;
@@ -124,7 +124,7 @@ export default {
     },
 
     evaluateResults() {
-      if (this.userSelectedCap.id === this.opponentCapType.id) {
+      if (this.userSelectedCap.name === this.opponentCapType.name) {
         this.winner = "nobody";
       } else {
         this.userSelectedCap.wins.includes(this.opponentCapType.id)
