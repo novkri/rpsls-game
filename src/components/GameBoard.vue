@@ -38,7 +38,8 @@ export default {
 
     anotherCap() {
       if (this.userSelectedCap && this.opponent && this.capsPicked.length === 2) {
-        return this.capsPicked.filter(cap => cap.id !== this.userSelectedCap.id)[0]
+        let res = this.capsPicked.filter(cap => cap.id !== this.userSelectedCap.id)[0]
+        return !res ? this.userSelectedCap : res
       } else {
         return null
       }
@@ -105,6 +106,7 @@ export default {
       this.userSelectedCap = null;
       this.houseSelectedCap = null;
       this.winner = "";
+      this.$socket.emit('restart')
       this.restartGame()
     },
 
@@ -124,7 +126,7 @@ export default {
     },
 
     evaluateResults() {
-      if (this.userSelectedCap.name === this.opponentCapType.name) {
+      if (!this.opponentCapType || this.userSelectedCap.id === this.opponentCapType.id) {
         this.winner = "nobody";
       } else {
         this.userSelectedCap.wins.includes(this.opponentCapType.id)
@@ -132,7 +134,7 @@ export default {
           : (this.winner = "house");
       }
 
-      let newScore = this.winner === "user" ? 1 : -1;
+      let newScore = this.winner === "user" ? 1 : this.winner === "nobody" ? 0 : -1;
       this.$emit("changeScore", newScore);
     }
   }

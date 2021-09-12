@@ -20,7 +20,8 @@ Socketio.on("connection", socket => {
   });
 
   socket.on("restart", data => {
-    numUsers = 0
+    numUsers--
+    Socketio.emit('clientDisconnected', numUsers);
   });
 
   socket.on('newPlayer', () => {
@@ -42,6 +43,7 @@ Socketio.on("connection", socket => {
     if (numUsers < 0) {
       numUsers = 0
     }
+    console.log(numUsers)
     console.log('disconnect')
     Socketio.emit('clientDisconnected', numUsers);
   })

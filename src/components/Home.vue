@@ -53,10 +53,6 @@ export default {
       console.log('disconnected')
       this.isStart = false
     })
-
-    // this.sockets.subscribe('picked', (item, userId) => {
-    //   console.log('picked: ', item, userId)
-    // })
   },
 
   sockets: {
