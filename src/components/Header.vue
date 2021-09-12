@@ -1,5 +1,5 @@
 <template>
-  <v-card class="header-card rounded-xl py-4 py-md-7 px-4 px-md-10">
+  <v-card class="header-card rounded-xl py-4 py-md-5 px-4 px-md-10">
     <v-row>
       <v-col>
         <v-img class="header-card__logo" src="@/assets/images/logo-bonus.svg" />

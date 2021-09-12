@@ -75,11 +75,11 @@ export default {
 
 @media screen and (min-width: 800px) {
   .game-container {
-    background-size: 55% !important;
+    background-size: 50% !important;
   }
 
   .game-container__top-row {
-    height: 520px;
+    height: 448px;
   }
 }
 </style>

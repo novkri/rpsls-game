@@ -3,7 +3,7 @@
     <v-card
       @click="$emit('selectCap')"
       elevation="1"
-      class="rounded-circle pa-3 pa-md-8 cap"
+      class="rounded-circle pa-3 pa-md-6 cap"
       :class="[iconName, isClickable ? 'pointer' : 'default']"
       style="
 -webkit-box-shadow: 0px -11px 0px 0px rgba(12, 12, 12, 0.3) inset !important;
@@ -62,8 +62,8 @@ export default {
 
 @media screen and (min-width: 800px) {
   .cap {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
   }
   .cap-image {
     width: 100px;

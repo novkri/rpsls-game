@@ -7,12 +7,14 @@ export default new Vuex.Store({
   state: {
     gameState: 0,
     capsPicked: [],
-    opponent: ""
+    opponent: "",
+    players: []
   },
   getters: {
     gameState: state => state.gameState,
     capsPicked: state => state.capsPicked,
-    opponent: state => state.opponent
+    opponent: state => state.opponent,
+    players: state => state.players
   },
   mutations: {
     capPicked(state, payload) {
@@ -25,43 +27,32 @@ export default new Vuex.Store({
     },
     setOpponent(state, data) {
       state.opponent = data;
+    },
+    addNewPlayer(state, data) {
+      state.players.push(data)
     }
   },
   actions: {
     SOCKET_oops(state, server) {
-      // Vue.toasted.global
-      //   .appError({
-      //     message: server.message
-      //   })
-      //   .goAway(1200);
       console.log("VUEX", state, server);
     },
     SOCKET_success(state, server) {
-      // Vue.toasted.global
-      //   .appSuccess({
-      //     message: server.message
-      //   })
-      //   .goAway(1200);
       console.log("VUEX", state, server);
     },
     SOCKET_info(state, server) {
-      //   Vue.toasted.global
-      //     .appInfo({
-      //       message: server.message
-      //     })
-      //     .goAway(1200);
       console.log("VUEX", state, server);
     },
 
     SOCKET_picked({ commit }, state, server) {
-      // Vue.toasted.global
-      //   .appSuccess({
-      //     message: server.message
-      //   })
-      //   .goAway(1200);
       console.log("VUEX", state, server);
       commit("capPicked", state);
     },
+
+    SOCKET_newPlayer({commit}, data) {
+      console.log("VUEX", data);
+      commit('addNewPlayer', data)
+    },
+
     restartGame({ commit }) {
       commit("restartGame");
     },

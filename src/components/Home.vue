@@ -4,7 +4,9 @@
 
     <WhoToPlayWith @selectOpponent="selectOpponent" v-if="!opponent" />
 
-    <game-board v-else @changeScore="changeScore"></game-board>
+    <div v-else-if="!isStart && opponent === 'human'" class="white--text title">Waiting for another player...</div>
+
+    <game-board v-else @changeScore="changeScore" :socket="socket"></game-board>
 
     <v-row>
       <v-col class="d-flex justify-center justify-md-end align-center">
@@ -25,12 +27,45 @@ export default {
   name: "Home",
   components: {WhoToPlayWith, Header, Modal, GameBoard },
   computed: {
-    ...mapGetters(["opponent"])
+    ...mapGetters(["opponent", "players"])
   },
   data: () => ({
     isRulesOpen: false,
     score: 0,
+    socket: {},
+    isStart: false,
+    users: 0
   }),
+
+  mounted() {
+  },
+
+  sockets: {
+    connect() {
+      console.log('socket connected')
+    },
+    success(data) {
+      console.log('success')
+      console.log(data)
+    },
+    customEmit(data) {
+      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)', data)
+    },
+    disconnect() {
+      console.log('disconnected')
+    },
+    joined(users) {
+      console.log('user joined', users)
+    },
+    startGame() {
+      console.log('can start')
+      this.isStart = true
+    },
+    clientDisconnected() {
+      console.log('disconnected')
+      this.isStart = false
+    }
+  },
   methods: {
     ...mapActions(['setOpponent', 'restartGame']),
 
@@ -43,6 +78,7 @@ export default {
     selectOpponent(data) {
       this.score = 0
       this.setOpponent(data)
+      this.$socket.emit('newPlayer')
     }
   }
 };

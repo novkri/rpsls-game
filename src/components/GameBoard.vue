@@ -13,14 +13,12 @@
       :opponentCapType="opponentCapType"
       :winner="winner"
     ></component>
-<!--  :anotherCap="anotherCap" :houseSelectedCap="houseSelectedCap" -->
   </div>
 </template>
 
 <script>
 import Start from "@/components/gameSteps/Start";
 import Picked from "@/components/gameSteps/Picked";
-import io from 'socket.io-client';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
@@ -29,7 +27,12 @@ export default {
     Start,
     Picked
   },
-
+  props: {
+    socket: {
+      type: Object,
+      default: () => {}
+    }
+  },
   computed: {
     ...mapGetters(['gameState', 'capsPicked', 'opponent']),
 
@@ -85,24 +88,8 @@ export default {
     houseSelectedCap: null,
     isHousePicked: false,
     winner: "",
-    socket: {}
   }),
-  created()  {
-    this.socket = io("http://localhost:3000")
-  },
-  mounted() {
-    this.socket.on('success', data => {
-      console.log(data)
-    })
-  },
-   sockets: {
-     connect() {
-         console.log('socket connected')
-       },
-      customEmit(data) {
-        console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)', data)
-      }
-    },
+
 
   methods: {
     ...mapActions(['restartGame', "setOpponent"]),
@@ -118,7 +105,6 @@ export default {
       this.userSelectedCap = null;
       this.houseSelectedCap = null;
       this.winner = "";
-      // this.setOpponent('')
       this.restartGame()
     },
 
@@ -131,7 +117,6 @@ export default {
           cap => cap.id === randomNumber
         )[0];
 
-        // console.log(this.houseSelectedCap);
         this.isHousePicked = true;
 
         this.evaluateResults();

@@ -9,24 +9,39 @@ const Socketio = require("socket.io")(Http, {
 
 const port = 3000;
 
+let numUsers = 0;
+
 Socketio.on("connection", socket => {
   console.log(`A user connected with socket id ${socket.id}`);
   socket.emit("success", "Server Accecpting Connections");
 
-  //   // This will send a message letting users know the server is
-  //   // being sutdown.
-  //   process.on("SIGINT", () => {
-  //     io.emit("oops", { message: "Server Shut Down" });
-  //     process.exit();
-  //   });
-  //
   socket.on("customEmit", data => {
+    console.log(data)
     Socketio.emit("picked", data);
   });
 
+  socket.on('newPlayer', () => {
+    console.log('new-player: ', socket.id)
+    numUsers++
+    Socketio.emit('joined', numUsers);
+
+    if (numUsers === 2) {
+      Socketio.emit('startGame')
+    }
+
+  })
   socket.on("picked", data => {
     console.log("user1 picked: ", data);
   });
+
+  socket.on("disconnect", () => {
+    numUsers--
+    if (numUsers < 0) {
+      numUsers = 0
+    }
+    console.log('disconnect')
+    Socketio.emit('clientDisconnected', numUsers);
+  })
 });
 
 Http.listen(port, () => {
